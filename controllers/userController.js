@@ -1,18 +1,16 @@
 const cloudinary = require("cloudinary").v2;
 const { User } = require("../models");
 
-exports.updateProfileImg = async (req, res, next) => {
-  try {
-    console.log(req.file);
+exports.updateProfileImg = (req, res, next) => {
+  console.log(req.file);
 
-    cloudinary.uploader.upload(req.file.path, (err, result) => {});
+  cloudinary.uploader.upload(req.file.path, async (err, result) => {
+    if (err) return next(err);
 
     await User.update(
-      { profileImg: req.file.path },
+      { profileImg: result.secure_url },
       { where: { id: req.user.id } }
     );
     res.json({ message: "Upload profile image completed" });
-  } catch (err) {
-    next(err);
-  }
+  });
 };
