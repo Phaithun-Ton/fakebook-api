@@ -1,3 +1,4 @@
+const cloudinary = require("cloudinary").v2;
 const { User } = require("../models");
 
 exports.updateProfileImg = async (req, res, next) => {
