@@ -5,6 +5,7 @@ const userController = require("../controllers/userController");
 const authenticate = require("../middlewares/authenticate");
 const upload = require("../middlewares/upload");
 
+router.get("/me", authenticate, userController.getMe);
 router.post("/register", authController.register);
 router.post("/login", authController.login);
 router.patch(

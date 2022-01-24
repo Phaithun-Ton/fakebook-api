@@ -59,16 +59,16 @@ module.exports = (sequelize, DataTypes) => {
       },
     });
     User.hasMany(models.Friend, {
-      as: "RequestFrom",
+      as: "requestFrom",
       foreignKey: {
-        name: "RequestFromId",
+        name: "requestFromId",
         allowNull: false,
       },
     });
     User.hasMany(models.Friend, {
-      as: "RequestTo",
+      as: "requestTo",
       foreignKey: {
-        name: "RequestToId",
+        name: "requestToId",
         allowNull: false,
       },
     });

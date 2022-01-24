@@ -18,16 +18,16 @@ module.exports = (sequelize, DataTypes) => {
   );
   Friend.associate = (models) => {
     Friend.belongsTo(models.User, {
-      as: "RequestFrom",
+      as: "requestFrom",
       foreignKey: {
-        name: "RequestFromId",
+        name: "requestFromId",
         allowNull: false,
       },
     });
     Friend.belongsTo(models.User, {
-      as: "RequestTo",
+      as: "requestTo",
       foreignKey: {
-        name: "RequestToId",
+        name: "requestToId",
         allowNull: false,
       },
     });

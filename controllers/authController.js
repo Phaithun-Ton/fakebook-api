@@ -9,11 +9,13 @@ exports.register = async (req, res, next) => {
     const {
       emailOrPhoneNumber,
       password,
-      comfirmPassword,
+      confirmPassword,
       firstName,
       lastName,
     } = req.body;
-    if (password !== comfirmPassword) {
+    // console.log(password);
+    // console.log(confirmPassword);
+    if (password !== confirmPassword) {
       return res
         .status(400)
         .json({ message: "password and comfirmPassword did not match" });
@@ -86,7 +88,19 @@ exports.login = async (req, res, next) => {
     const token = jwt.sign(payload, process.env.JWT_SECRET_KEY, {
       expiresIn: 60 * 60 * 24 * 30,
     });
-    res.status(200).json({ message: "welcome", token });
+    const { id, firstName, lastName, profileImg, email, phoneNumber } = user;
+    res.status(200).json({
+      message: "welcome",
+      token,
+      user: {
+        id,
+        firstName,
+        lastName,
+        profileImg,
+        email,
+        phoneNumber,
+      },
+    });
   } catch (err) {
     next(err);
   }
