@@ -24,7 +24,7 @@ exports.updateProfileImg = (req, res, next) => {
     }
     fs.unlinkSync(req.file.path);
     res.json({
-      message: "Upload profile image completed",
+      message: "  ",
       profileImg: result.secure_url,
     });
   });
